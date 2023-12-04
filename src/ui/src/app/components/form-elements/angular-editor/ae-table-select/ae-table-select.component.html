@@ -1,0 +1,31 @@
+<span class="ae-font ae-table-picker" [ngClass]="{'ae-expanded':isOpen}">
+  <button [tabIndex]="-1" #labelButton tabindex="0" type="button" role="button" class="btn ae-table-picker-label" style="min-width: 100px;" (click)="toggleOpen($event);">
+    Table
+    <svg viewBox="0 0 18 18">
+      <polygon class="ae-stroke" points="7 11 9 13 11 11 7 11"></polygon>
+      <polygon class="ae-stroke" points="7 7 9 5 11 7 7 7"></polygon>
+    </svg>
+  </button>
+  <div class="ae-table-picker-options">
+    <div class="d-flex" style="height:20px;">
+      <span class="w-100 mx-auto my-auto" style="text-align: center;">{{ hoveredCell.row+1 }} * {{ hoveredCell.col+1 }}</span>
+    </div>
+    <table>
+      <tr *ngFor="let row of rows; let rowIndex = index">
+        <td *ngFor="let col of cols; let colIndex = index" 
+            (mouseover)="hoveredCell = { row: rowIndex, col: colIndex }" 
+            [class.highlight]="rowIndex <= hoveredCell.row && colIndex <= hoveredCell.col" 
+            (click)="optionSelect(hoveredCell, $event)"> 
+            <!-- {{rowIndex}},{{colIndex}}  -->
+        </td>
+      </tr>
+    </table>
+    <!-- <button tabindex="-1" type="button" role="button" class="btn ae-table-picker-item"
+          *ngFor="let item of options; let i = index"
+          [ngClass]="{'selected': item.value === value, 'focused': i === optionId}"
+          (click)="optionSelect(item, $event)">
+          {{item.label}}
+    </button> -->
+    <!-- <span class="dropdown-item" *ngIf="!options.length">No items for select</span> -->
+  </div>
+</span>

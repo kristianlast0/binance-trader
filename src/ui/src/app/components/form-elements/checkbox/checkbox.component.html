@@ -1,0 +1,9 @@
+<label class="form-check">
+    <input class="form-check-input" [id]="id" [name]="name" [formControl]="control" type="checkbox" />
+    <span class="form-check-label">{{ label }} <sup class="text-danger" *ngIf="isRequired">*</sup></span>
+</label>
+<span class="form-check-description mt-2" *ngIf="hint">{{ hint }}</span>
+<div *ngIf="control && control.errors" class="text-danger mt-2">
+    <span *ngIf="control.touched && control.hasError('required')">{{ label ? label : name }} field is required!</span>
+    <span *ngIf="control.touched && control.hasError('server')">{{ control.errors['server'] }}!</span>
+</div>

@@ -1,0 +1,14 @@
+python-binance
+TA-Lib
+numpy
+flask
+flask_cors
+backtrader
+gunicorn
+python-dotenv
+matplotlib
+websocket_client
+pandas
+plotly
+kaleido
+scipy

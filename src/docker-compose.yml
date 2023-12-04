@@ -1,0 +1,60 @@
+version: "3.9"
+services:
+
+  ########################################
+  # binapi Python
+  ########################################
+
+  binapi-api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: binapi-api
+    ports:
+      - 5000:5000
+    volumes:
+      - "./api:/usr/src/binapi-api"
+    networks:
+      - binapi-backend
+
+  ########################################
+  # binapi Angular UI
+  ########################################
+
+  binapi-ui:
+    container_name: binapi-ui
+    build:
+      context: ./ui
+      dockerfile: Dockerfile.dev
+    volumes:
+      - "./ui:/usr/src/binapi-ui"
+    depends_on:
+      - binapi-api
+    networks:
+      - binapi-backend
+      - binapi-frontend
+
+  ########################################
+  # binapi Proxy
+  ########################################
+
+  binapi-proxy:
+    container_name: binapi-proxy
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "81:81"
+    volumes:
+      - ./proxy/development.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - binapi-api
+      - binapi-ui
+    networks:
+      - binapi-backend
+      - binapi-frontend
+
+networks:
+  binapi-backend:
+    driver: bridge
+  binapi-frontend:
+    driver: bridge

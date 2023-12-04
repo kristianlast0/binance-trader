@@ -1,0 +1,28 @@
+<div class="form-group">
+  <label [for]="name" *ngIf="label">{{ label }} <sup class="text-danger" *ngIf="required">*</sup></label>
+  <ng-select [items]="options"
+    typeToSearchText="Search"
+    [bindLabel]="textAttr"
+    [bindValue]="valueAttr"
+    [multiple]="multiple"
+    [hideSelected]="true"
+    [minTermLength]="1"
+    [placeholder]="placeholder"
+    [formControl]="control">
+    <!-- Use ng-container with *ngTemplateOutlet directive to handle dynamic content projection -->
+    <ng-container *ngIf="ngOptionTmp; else defaultOptionTemplate">
+      <ng-template ng-option-tmp let-item="item" let-index="index">
+        <!-- Use the custom template to display dynamic content for each option -->
+        <ng-container *ngTemplateOutlet="ngOptionTmp; context: { item: item }"></ng-container>
+      </ng-template>
+    </ng-container>
+    <!-- Use the default label property if the custom template is not provided -->
+    <ng-template #defaultOptionTemplate let-item="item" let-index="index">
+      {{ item[textAttr] }}
+    </ng-template>
+  </ng-select>
+  <div *ngIf="control && control.errors" class="text-danger mt-2">
+    <span *ngIf="control.touched && control.hasError('required')">{{ label ? label : name }} field is required!</span>
+    <span *ngIf="control.touched && control.hasError('server')">{{ control.errors['server'] }}!</span>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<span class="ae-font ae-table-picker" [ngClass]="{'ae-expanded':isOpen}">
+  <button [tabIndex]="-1" #labelButton tabindex="0" type="button" role="button" class="btn ae-table-picker-label" (click)="toggleOpen($event);">
+    <span style="padding-right:10px;">{{ data?.name }}</span>
+    <svg viewBox="0 0 18 18">
+      <polygon class="ae-stroke" points="7 11 9 13 11 11 7 11"></polygon>
+      <polygon class="ae-stroke" points="7 7 9 5 11 7 7 7"></polygon>
+    </svg>
+  </button>
+  <div class="ae-table-picker-options">
+    <button tabindex="-1" type="button" role="button" class="btn ae-table-picker-item"
+      *ngFor="let item of (data!.tags | keyvalue); let i = index"
+      (click)="optionSelect(item.key, $event)">
+      {{item.value}}
+    </button>
+    <!-- <span class="dropdown-item" *ngIf="!data.tags.length">No items to select</span> -->
+  </div>
+</span>

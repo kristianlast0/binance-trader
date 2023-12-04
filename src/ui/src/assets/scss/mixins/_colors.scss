@@ -1,0 +1,86 @@
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+@each $color, $value in $theme-colors {
+    .swatch-#{$color} {
+        color: color-contrast($value);
+    }
+    .text-#{$color} {
+        color: $value;
+    }
+    .bg-#{$color} {
+        background-color: $value;
+    }
+    .bg-lt-#{$color} {
+        background-color: rgba($value, 0.1);
+    }
+    .bg-gradient-#{$color} {
+        // background-image: linear-gradient(to bottom, $value, color-darken($value, 10%));
+        background-image: #{linear-gradient(25deg, darken($value, 15%) 0%, $value 100%)};
+    }
+    .border-#{$color} {
+        border-color: $value;
+    }
+    .border-lt-#{$color} {
+        border-color: rgba($value, 0.1);
+    }
+    .fill-#{$color} {
+        fill: $value;
+    }
+    .stroke-#{$color} {
+        stroke: $value;
+    }
+    .btn-outline-#{$color} {
+        color: $value;
+        border-color: $value;
+    }
+    .btn-#{$color} {
+        color: color-contrast($value);
+        background-color: $value;
+        border-color: $value;
+    }
+    .btn-#{$color}:hover {
+        color: color-contrast($value);
+        background-color: color-darken($value, 10%);
+        border-color: color-darken($value, 10%);
+    }
+    .btn-#{$color}:focus,
+    .btn-#{$color}.focus {
+        box-shadow: 0 0 0 0.2rem color-fade($value, 50%);
+    }
+    .btn-#{$color}.disabled,
+    .btn-#{$color}:disabled {
+        color: color-contrast($value);
+        background-color: $value;
+        border-color: $value;
+    }
+    .btn-outline-#{$color}:hover {
+        color: color-contrast($value);
+        background-color: color-fade($value, 15%);
+        border-color: color-fade($value, 15%);
+    }
+    .btn-outline-#{$color}:focus,
+    .btn-outline-#{$color}.focus {
+        box-shadow: 0 0 0 0.2rem color-fade($value, 50%);
+    }
+    .btn-outline-#{$color}.disabled,
+    .btn-outline-#{$color}:disabled {
+        color: $value;
+        background-color: transparent;
+    }
+    .btn-link-#{$color} {
+        color: $value;
+    }
+    .btn-link-#{$color}:hover,
+    .btn-link-#{$color}:focus {
+        color: color-contrast($value);
+    }
+    .btn-link-#{$color}:focus,
+    .btn-link-#{$color}.focus {
+        box-shadow: none;
+    }
+    .btn-link-#{$color}.disabled,
+    .btn-link-#{$color}:disabled {
+        color: $value;
+    }
+
+}

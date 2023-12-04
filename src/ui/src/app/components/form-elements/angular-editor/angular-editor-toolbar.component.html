@@ -1,0 +1,323 @@
+<div class="angular-editor-toolbar" *ngIf="showToolbar">
+  <div class="angular-editor-toolbar-set">
+    <button type="button" title="Undo" class="angular-editor-button btn btn-sm" (click)="triggerCommand('undo')" [hidden]="isButtonHidden('undo')" tabindex="-1">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M9 14l-4 -4l4 -4"></path>
+        <path d="M5 10h11a4 4 0 1 1 0 8h-1"></path>
+     </svg>
+    </button>
+
+    
+    <button type="button" title="Redo" class="angular-editor-button btn btn-sm" (click)="triggerCommand('redo')"
+            [hidden]="isButtonHidden('redo')" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-forward-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M15 14l4 -4l-4 -4"></path>
+              <path d="M19 10h-11a4 4 0 1 0 0 8h1"></path>
+           </svg></button>
+  </div>
+  <div class="angular-editor-toolbar-set">
+    <button [id]="'bold-'+id" type="button" title="Bold" class="angular-editor-button btn btn-sm" (click)="triggerCommand('bold')"
+            [disabled]="htmlMode" [hidden]="isButtonHidden('bold')" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bold" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M7 5h6a3.5 3.5 0 0 1 0 7h-6z"></path>
+              <path d="M13 12h1a3.5 3.5 0 0 1 0 7h-7v-7"></path>
+           </svg></button>
+    <button [id]="'italic-'+id" type="button" title="Italic" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('italic')"
+            [disabled]="htmlMode" [hidden]="isButtonHidden('italic')" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-italic" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M11 5l6 0"></path>
+              <path d="M7 19l6 0"></path>
+              <path d="M14 5l-4 14"></path>
+           </svg>
+    </button>
+    <button [id]="'underline-'+id" type="button" title="Underline" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('underline')" [disabled]="htmlMode" [hidden]="isButtonHidden('underline')"
+            tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-underline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M7 5v5a5 5 0 0 0 10 0v-5"></path>
+              <path d="M5 19h14"></path>
+           </svg></button>
+    <button [id]="'strikeThrough-'+id" type="button" title="Strikethrough" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('strikeThrough')" [disabled]="htmlMode" [hidden]="isButtonHidden('strikeThrough')"
+            tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-strikethrough" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l14 0"></path>
+              <path d="M16 6.5a4 2 0 0 0 -4 -1.5h-1a3.5 3.5 0 0 0 0 7h2a3.5 3.5 0 0 1 0 7h-1.5a4 2 0 0 1 -4 -1.5"></path>
+           </svg></button>
+    <button [id]="'subscript-'+id" type="button" title="Subscript" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('subscript')" [disabled]="htmlMode" [hidden]="isButtonHidden('subscript')"
+            tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-subscript" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 7l8 10m-8 0l8 -10"></path>
+              <path d="M21 20h-4l3.5 -4a1.73 1.73 0 0 0 -3.5 -2"></path>
+           </svg></button>
+    <button [id]="'superscript-'+id" type="button" title="Superscript" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('superscript')" [disabled]="htmlMode" [hidden]="isButtonHidden('superscript')"
+            tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-superscript" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 7l8 10m-8 0l8 -10"></path>
+              <path d="M21 11h-4l3.5 -4a1.73 1.73 0 0 0 -3.5 -2"></path>
+           </svg></button>
+  </div>
+  <div class="angular-editor-toolbar-set">
+    <button [id]="'justifyLeft-'+id" type="button" title="Justify Left" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('justifyLeft')" [disabled]="htmlMode" [hidden]="isButtonHidden('justifyLeft')"
+            tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-align-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M4 6l16 0"></path>
+              <path d="M4 12l10 0"></path>
+              <path d="M4 18l14 0"></path>
+           </svg></button>
+    <button [id]="'justifyCenter-'+id" type="button" title="Justify Center" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('justifyCenter')" [disabled]="htmlMode" [hidden]="isButtonHidden('justifyCenter')"
+            tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-align-center" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M4 6l16 0"></path>
+              <path d="M8 12l8 0"></path>
+              <path d="M6 18l12 0"></path>
+           </svg></button>
+    <button [id]="'justifyRight-'+id" type="button" title="Justify Right" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('justifyRight')" [disabled]="htmlMode" [hidden]="isButtonHidden('justifyRight')"
+            tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-align-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M4 6l16 0"></path>
+              <path d="M10 12l10 0"></path>
+              <path d="M6 18l14 0"></path>
+           </svg></button>
+    <button [id]="'justifyFull-'+id" type="button" title="Justify Full" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('justifyFull')" [disabled]="htmlMode" [hidden]="isButtonHidden('justifyFull')"
+            tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-align-justified" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M4 6l16 0"></path>
+              <path d="M4 12l16 0"></path>
+              <path d="M4 18l12 0"></path>
+           </svg></button>
+  </div>
+  <div class="angular-editor-toolbar-set">
+    <button [id]="'indent-'+id" type="button" title="Indent" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('indent')"
+            [disabled]="htmlMode" [hidden]="isButtonHidden('indent')" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-indent-increase" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M20 6l-11 0"></path>
+              <path d="M20 12l-7 0"></path>
+              <path d="M20 18l-11 0"></path>
+              <path d="M4 8l4 4l-4 4"></path>
+           </svg></button>
+    <button [id]="'outdent-'+id" type="button" title="Outdent" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('outdent')"
+            [disabled]="htmlMode" [hidden]="isButtonHidden('outdent')" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-indent-decrease" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M20 6l-7 0"></path>
+              <path d="M20 12l-9 0"></path>
+              <path d="M20 18l-7 0"></path>
+              <path d="M8 8l-4 4l4 4"></path>
+           </svg></button>
+      <!-- <button [id]="'table-'+id" type="button" title="Table" class="angular-editor-button btn btn-sm"
+            (click)="insertTable(null)"
+            [disabled]="htmlMode" [hidden]="isButtonHidden('insertTable')" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-table-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M12.5 21h-7.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v7.5"></path>
+              <path d="M3 10h18"></path>
+              <path d="M10 3v18"></path>
+              <path d="M16 19h6"></path>
+              <path d="M19 16v6"></path>
+           </svg></button> -->
+
+           <button [id]="'pagebreak-'+id" type="button" title="Pagebreak" class="angular-editor-button btn btn-sm"
+            (click)="insertPageBreak()"
+            [disabled]="htmlMode" [hidden]="isButtonHidden('insertPageBreak')" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-spacing-vertical" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M4 20v-2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v2"></path>
+              <path d="M4 4v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path>
+              <path d="M16 12h-8"></path>
+           </svg></button>
+  </div>
+  <div class="angular-editor-toolbar-set">
+    <button [id]="'insertUnorderedList-'+id" type="button" title="Unordered List" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('insertUnorderedList')" [disabled]="htmlMode"
+            [hidden]="isButtonHidden('insertUnorderedList')" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M9 6l11 0"></path>
+              <path d="M9 12l11 0"></path>
+              <path d="M9 18l11 0"></path>
+              <path d="M5 6l0 .01"></path>
+              <path d="M5 12l0 .01"></path>
+              <path d="M5 18l0 .01"></path>
+           </svg></button>
+    <button [id]="'insertOrderedList-'+id" type="button" title="Ordered List" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('insertOrderedList')" [disabled]="htmlMode"
+            [hidden]="isButtonHidden('insertOrderedList')" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list-numbers" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M11 6h9"></path>
+              <path d="M11 12h9"></path>
+              <path d="M12 18h8"></path>
+              <path d="M4 16a2 2 0 1 1 4 0c0 .591 -.5 1 -1 1.5l-3 2.5h4"></path>
+              <path d="M6 10v-6l-2 2"></path>
+           </svg></button>
+  </div>
+  <div class="angular-editor-toolbar-set">
+    <ae-table-select class="table-select" label="Table"
+    [(ngModel)]="table"
+    (change)="insertTable(table)"
+    [disabled]="htmlMode"
+    [hidden]="isButtonHidden('insertTable')"
+    tabindex="-1"></ae-table-select>
+  </div>
+  
+  <div class="angular-editor-toolbar-set">
+    <ng-container *ngFor="let dataset of datasets; let i = index">
+      <ae-tag-select class="tag-select" 
+        [data]="dataset"
+        (onSelect)="insertTag($event)"
+        [disabled]="htmlMode"
+        [hidden]="isButtonHidden('tagSelect')"
+        tabindex="-1"></ae-tag-select>
+    </ng-container>
+  </div>
+  <div class="angular-editor-toolbar-set">
+    <input
+      style="display: none"
+      type="color" (change)="insertColor(fgInput.value, 'textColor')"
+      #fgInput>
+    <button [id]="'foregroundColorPicker-'+id" type="button" class="angular-editor-button btn btn-sm" (click)="focus(); ; fgInput.click()"
+            title="Text Color"
+            [disabled]="htmlMode" [hidden]="isButtonHidden('textColor')" tabindex="-1"><span
+      class="color-label foreground"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-color" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M9 15v-7a3 3 0 0 1 6 0v7"></path>
+        <path d="M9 11h6"></path>
+        <path d="M5 19h14"></path>
+     </svg></span>
+    </button>
+    <input
+      style="display: none"
+      type="color" (change)="insertColor(bgInput.value, 'backgroundColor')"
+      #bgInput>
+    <button [id]="'backgroundColorPicker-'+id" type="button" class="angular-editor-button btn btn-sm" (click)="focus(); ; bgInput.click()"
+            title="Background Color"
+            [disabled]="htmlMode" [hidden]="isButtonHidden('backgroundColor')" tabindex="-1"><span
+      class="color-label background"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-text-color" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M9 15v-7a3 3 0 0 1 6 0v7"></path>
+        <path d="M9 11h6"></path>
+        <path d="M5 19h14"></path>
+     </svg></span>
+    </button>
+  </div>
+  <div class="angular-editor-toolbar-set">
+    <ae-select class="select-font" [options]="fonts"
+               [(ngModel)]="fontName"
+               (change)="setFontName(fontName)"
+               [disabled]="htmlMode"
+               [hidden]="isButtonHidden('fontName')"
+               tabindex="-1"></ae-select>
+  </div>
+  <div class="angular-editor-toolbar-set">
+    <ae-select class="select-heading" [options]="headings"
+               [(ngModel)]="block"
+               (change)="triggerCommand(block)"
+               [disabled]="htmlMode"
+               [hidden]="isButtonHidden('heading')"
+               tabindex="-1"></ae-select>
+  </div>
+  <div class="angular-editor-toolbar-set">
+    <ae-select class="select-font-size" [options]="fontSizes"
+               [(ngModel)]="fontSize"
+               (change)="setFontSize(fontSize)"
+               [disabled]="htmlMode"
+               [hidden]="isButtonHidden('fontSize')"
+               tabindex="-1">
+    </ae-select>
+  </div>
+  <div *ngIf="_customClasses" class="angular-editor-toolbar-set">
+    <ae-select class="select-custom-style" [options]="customClassList"
+               [(ngModel)]="customClassId"
+               (change)="setCustomClass(customClassId)"
+               [disabled]="htmlMode"
+               [hidden]="isButtonHidden('customClasses')"
+               tabindex="-1"></ae-select>
+  </div>
+  <div class="angular-editor-toolbar-set">
+    <button [id]="'link-'+id" type="button" class="angular-editor-button btn btn-sm" (click)="insertUrl()"
+            title="Insert Link" [disabled]="isLinkButtonDisabled" [hidden]="isButtonHidden('link')" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M9 15l6 -6"></path>
+              <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"></path>
+              <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"></path>
+           </svg>
+    </button>
+    <button [id]="'unlink-'+id" type="button" class="angular-editor-button btn btn-sm" (click)="triggerCommand('unlink')"
+            title="Unlink" [disabled]="htmlMode || !linkSelected" [hidden]="isButtonHidden('unlink')" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-unlink" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M17 22v-2"></path>
+              <path d="M9 15l6 -6"></path>
+              <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"></path>
+              <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"></path>
+              <path d="M20 17h2"></path>
+              <path d="M2 7h2"></path>
+              <path d="M7 2v2"></path>
+           </svg>
+    </button>
+    <input
+      style="display: none"
+      accept="image/*"
+      type="file" (change)="onFileChanged($event)"
+      #fileInput>
+    <button [id]="'insertImage-'+id" type="button" class="angular-editor-button btn btn-sm" (click)="focus(); fileInput.click()"
+            title="Insert Image"
+            [disabled]="htmlMode" [hidden]="isButtonHidden('insertImage')" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M15 8h.01"></path>
+              <path d="M12.5 21h-6.5a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v6.5"></path>
+              <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l4 4"></path>
+              <path d="M14 14l1 -1c.67 -.644 1.45 -.824 2.182 -.54"></path>
+              <path d="M16 19h6"></path>
+              <path d="M19 16v6"></path>
+           </svg>
+    </button>
+    <button [id]="'insertVideo-'+id" type="button" class="angular-editor-button btn btn-sm"
+            (click)="insertVideo()" title="Insert Video" [disabled]="htmlMode" [hidden]="isButtonHidden('insertVideo')"
+            tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-video-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M15 10l4.553 -2.276a1 1 0 0 1 1.447 .894v6.764a1 1 0 0 1 -1.447 .894l-4.553 -2.276v-4z"></path>
+              <path d="M3 6m0 2a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2z"></path>
+              <path d="M7 12l4 0"></path>
+              <path d="M9 10l0 4"></path>
+           </svg></button>
+    <button [id]="'insertHorizontalRule-'+id" type="button" title="Horizontal Line" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('insertHorizontalRule')" [disabled]="htmlMode"
+            [hidden]="isButtonHidden('insertHorizontalRule')" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-separator" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M3 12l0 .01"></path>
+              <path d="M7 12l10 0"></path>
+              <path d="M21 12l0 .01"></path>
+           </svg></button>
+  </div>
+  <div class="angular-editor-toolbar-set">
+    <button [id]="'clearFormatting-'+id" type="button" title="Clear Formatting" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('removeFormat')" [disabled]="htmlMode" [hidden]="isButtonHidden('removeFormat')"
+            tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eraser" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M19 20h-10.5l-4.21 -4.3a1 1 0 0 1 0 -1.41l10 -10a1 1 0 0 1 1.41 0l5 5a1 1 0 0 1 0 1.41l-9.2 9.3"></path>
+              <path d="M18 13.3l-6.3 -6.3"></path>
+           </svg>
+    </button>
+  </div>
+  <div class="angular-editor-toolbar-set">
+    <button [id]="'toggleEditorMode-'+id" type="button" title="HTML Code" class="angular-editor-button btn btn-sm"
+            (click)="triggerCommand('toggleEditorMode')" [hidden]="isButtonHidden('toggleEditorMode')" tabindex="-1"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-source-code" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M14.5 4h2.5a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-5"></path>
+              <path d="M6 5l-2 2l2 2"></path>
+              <path d="M10 9l2 -2l-2 -2"></path>
+           </svg></button>
+  </div>
+  <ng-content></ng-content>
+</div>

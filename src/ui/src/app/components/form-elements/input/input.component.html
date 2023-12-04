@@ -1,0 +1,14 @@
+<div class="form-group">
+  <label [for]="name" *ngIf="label">{{ label }} <sup class="text-danger" *ngIf="required">*</sup></label>
+  <div class="input-group">
+    <span class="input-group-text" *ngIf="prepend && prepend != ''">{{ prepend }}</span>
+    <span class="input-group-text" *ngIf="format == 'currency'">£</span>
+    <input [type]="type" [name]="name" [id]="name" class="form-control" [formControl]="control" [step]="step" [min]="min" [max]="max" [ngClass]="{ 'is-invalid': control.errors && control.touched }" [placeholder]="placeholder" />
+    <span class="input-group-text" *ngIf="format == 'percentage'">%</span>
+    <span class="input-group-text" *ngIf="append && append != ''">{{ append }}</span>
+  </div>
+  <div *ngIf="control.invalid && (control.dirty || control.touched)" class="mt-2 text-danger">
+    <div *ngIf="control.errors.required">{{ label ? label : name }} is required!</div>
+    <div *ngIf="control.errors?.server">{{ control.errors.server }}</div>
+  </div>
+</div>

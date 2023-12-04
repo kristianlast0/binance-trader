@@ -1,0 +1,35 @@
+<div class="form-group">
+  <label for="">{{ label }}<sup class="text-danger" *ngIf="required">*</sup></label>
+  <div class="d-flex">
+    <div class="flex-grow-1">
+      <ng-select [items]="data$ | async"
+          [bindLabel]="textAttr"
+          [multiple]="multiple"
+          [hideSelected]="true"
+          [minTermLength]="1"
+          [loading]="loading"
+          [typeToSearchText]="'Search'"
+          [typeahead]="input$"
+          (focus)="initSearch()"
+          [(ngModel)]="selectedValue"
+          (ngModelChange)="selectOption($event)">
+        <!-- Use ng-container with *ngTemplateOutlet directive to handle dynamic content projection -->
+        <ng-container *ngIf="ngOptionTmp; else defaultOptionTemplate">
+          <ng-template ng-option-tmp let-item="item" let-index="index">
+            <!-- Use the custom template to display dynamic content for each option -->
+            <ng-container *ngTemplateOutlet="ngOptionTmp; context: { item: item }"></ng-container>
+          </ng-template>
+        </ng-container>
+        <!-- Use the default label property if the custom template is not provided -->
+        <ng-template #defaultOptionTemplate let-item="item" let-index="index">
+          {{ item[textAttr] }}
+        </ng-template>
+      </ng-select>
+    </div>
+    <ng-content></ng-content>
+  </div>
+  <div *ngIf="selectedValue && selectedValue.errors" class="text-danger mt-2">
+    <span *ngIf="selectedValue.touched && selectedValue.hasError('required')">{{ label ? label : name }} field is required!</span>
+    <span *ngIf="selectedValue.touched && selectedValue.hasError('server')">{{ selectedValue.errors['server'] }}!</span>
+  </div>
+</div>

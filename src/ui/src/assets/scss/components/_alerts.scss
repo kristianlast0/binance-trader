@@ -1,0 +1,53 @@
+.alert {
+  --alert-color: #{$text-muted};
+  background: $white;
+  border: $alert-border-width solid $alert-border-color;
+  border-left: .25rem solid var(--alert-color);
+  box-shadow: $alert-shadow;
+  width: 235px;
+
+  >:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.alert-important {
+  border-color: transparent;
+  background: var(--alert-color);
+  color: #fff;
+
+  .alert-icon,
+  .alert-link {
+    color: inherit;
+  }
+
+  .alert-link:hover {
+    color: inherit;
+  }
+}
+
+.alert-link {
+  &,
+  &:hover {
+    color: var(--alert-color);
+  }
+}
+
+@each $state, $value in $theme-colors {
+  .alert-#{$state} {
+    --alert-color: #{$value};
+  }
+}
+
+.alert-icon {
+  color: var(--alert-color);
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  margin: -.125rem $alert-padding-x -.125rem 0;
+}
+
+.alert-title {
+  font-weight: $font-weight-bold;
+  margin-bottom: .25rem;
+  color: var(--alert-color);
+}

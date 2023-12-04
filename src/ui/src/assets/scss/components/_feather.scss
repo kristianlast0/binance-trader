@@ -1,0 +1,36 @@
+i-feather {
+
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 18px;
+  height: 18px;
+
+  svg.feather {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+  }
+
+  &.feather-lg {
+    width: 26px;
+    height: 26px;
+    svg.feather {
+      width: 26px;
+      height: 26px;
+      stroke-width: 3;
+      vertical-align: unset;
+    }
+  }
+
+  &.feather-sm {
+    width: 16px;
+    height: 16px;
+    svg.feather {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2;
+      vertical-align: unset;
+    }
+  }
+  
+}

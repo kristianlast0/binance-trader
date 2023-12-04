@@ -1,0 +1,19 @@
+
+<div class="form-group">
+    <label for="">{{ label }}</label>
+    <div class="row g-1 mb-1">
+        <div class="col">
+            <input type="text" class="form-control" [formControl]="control">
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-icon btn-primary" (click)="search()" [disabled]="loading || control.value == '' || control.value == searched">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="10" cy="10" r="7" /><line x1="21" y1="21" x2="15" y2="15" /></svg>
+            </button>
+        </div>
+    </div>
+    <p class="text-danger mt-2" *ngIf="error">{{ error }}</p>
+    <div *ngIf="control.invalid && (control.dirty || control.touched)" class="mt-2 text-danger">
+        <div *ngIf="control.errors.required">{{ label ? label : name }} is required!</div>
+        <div *ngIf="control.errors?.server">{{ control.errors.server }}</div>
+    </div>
+</div>

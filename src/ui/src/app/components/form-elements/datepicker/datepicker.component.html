@@ -1,0 +1,13 @@
+<div class="form-group">
+  <label [for]="name" *ngIf="label">{{ label }}</label>
+  <div class="input-group">
+    <input class="form-control" [placeholder]="placeholder" name="dp" [(ngModel)]="selectedDate" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="onDateSelect($event)" />
+    <button class="btn btn-outline-primary" (click)="d.toggle()" type="button">
+      <i-feather name="calendar"></i-feather>
+    </button>
+  </div>
+  <div *ngIf="control && control.errors" class="text-danger mt-2">
+    <span *ngIf="control.touched && control.hasError('required')">{{ label ? label : name }} field is required!</span>
+    <span *ngIf="control.touched && control.hasError('server')">{{ control.errors['server'] }}!</span>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="form-group">
+  <label for="file_upload">{{ file ? file.name : label }}</label>
+  <input type="file" class="form-control" id="file_upload" aria-describedby="file_uploader" />
+  <div class="progress mt-1" *ngIf="progress">
+    <div
+      class="progress-bar progress-bar-info"
+      role="progressbar"
+      attr.aria-valuenow="{{ progress }}"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [ngStyle]="{ width: progress + '%' }"
+      [hidden]="progress == 0"
+    >
+      <!-- {{ progress }}% -->
+    </div>
+  </div>
+</div>

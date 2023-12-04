@@ -1,0 +1,43 @@
+<div class="container pt-5">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title m-0">{{ ticker | uppercase }}</h3>
+        </div>
+        <div class="card-body p-0">
+          <div id="chart" #chart></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title m-0">Account</h3>
+        </div>
+        <div class="card-body p-0" *ngIf="account">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Asset</th>
+                <th>Free</th>
+                <th>Locked</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let balance of account.balances">
+                <td>{{ balance.asset }}</td>
+                <td>{{ balance.free }}</td>
+                <td>{{ balance.locked }}</td>
+                <td>{{ balance.value | currency:'USD' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

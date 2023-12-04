@@ -1,0 +1,9 @@
+ul.check {
+    list-style: none;
+    padding: 0;
+    li:before {
+        content: '✓';
+        color: $success;
+        margin-right: 10px;
+    }
+}
